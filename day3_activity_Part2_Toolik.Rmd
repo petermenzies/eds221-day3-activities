@@ -1,0 +1,52 @@
+---
+title: 'Day 3 Activity Part 2: Real data'
+author: "Peter Menzies"
+date: "8/11/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(janitor)
+library(here)
+```
+
+### Read in the data
+
+```{r}
+toolik_biochem <- read_csv(here::here("data", "2011_Kling_Akchem.csv"),
+                           na = ".") %>% 
+  clean_names() %>% 
+  filter(site == "Toolik inlet" | site == "Toolik Inlet") %>% 
+  select(p_h, doc_u_m, tdn_u_m)
+```
+
+### Finding the mean value of each column in different ways
+
+by hand for loop
+
+```{r}
+for (i in seq_along(toolik_biochem)) {
+  print(mean(toolik_biochem[[i]], na.rm = TRUE))
+}
+```
+
+using `apply()` function
+
+```{r}
+apply(toolik_biochem, 2, mean, na.rm = TRUE)
+```
+
+using `purrr::map_df()` function
+
+```{r}
+map_df(toolik_biochem, mean, na.rm = TRUE)
+```
+storing as a data frame
+
+```{r}
+toolik_biochem_mean <- map_df(toolik_biochem, mean, na.rm = TRUE)
+```
+
+

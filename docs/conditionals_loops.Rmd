@@ -1,0 +1,91 @@
+---
+title: "Conditional loops"
+author: "Peter Menzies"
+date: "8/11/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+## Conditional statements
+
+Task 1
+
+```{r}
+pm2_5 =  200
+
+if (pm2_5 < 100) {
+  print("low to moderate risk")
+} else if (pm2_5 >= 100 & pm2_5 < 150) {
+  print("unhealthy for sensitive groups") 
+} else {
+  print("health risk present")
+}
+```
+
+Task 2
+
+```{r}
+species <- "blue whale"
+
+if (str_detect(species, patter = "whale")) {
+  print("you found a whale!")
+}
+```
+
+Task 3
+
+```{r}
+max_airtemp_c <- c(24.1)
+
+if (max_airtemp_c > 27) {
+  print("temperature too high")
+} else {
+  print("temperature OK")
+}
+```
+
+Task 4
+
+```{r}
+base_burrito <- 6.50
+main_ingredient <- "chicken"
+
+if (main_ingredient == "veggie") {
+  print(base_burrito)
+} else if (main_ingredient == "chicken") {
+  print(base_burrito + 3) 
+} else if (main_ingredient == "steak") {
+  print(base_burrito + 3.25)
+}
+```
+
+## For loops
+
+Task 5
+
+```{r}
+fish <- c(8, 10, 12, 23)
+
+for (i in seq_along(fish)) {
+  print(fish[i] / sum(fish))
+}
+```
+
+Task 6
+
+using paste function to stitch together variables and strings
+
+```{r}
+for (i in seq_along(month.name)) {
+  print(paste(month.name[i], "is month", i))
+}
+```
+
+
+
+
+
